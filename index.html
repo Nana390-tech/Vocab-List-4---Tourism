@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wordlist 4: Tourism — Vocabulary Quiz</title>
+<style>
+:root{
+  --ink:#16294D; --deep:#1F3E6E; --blue:#3467A8; --coral:#E4572E; --sea:#1F7A6B;
+  --sand:#F5E6C8; --paper:#EEF2F7; --white:#fff; --line:#C9D6E4; --muted:#5C6B82; --red:#C2402F;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Segoe UI",Roboto,system-ui,-apple-system,Arial,sans-serif;font-size:18px;line-height:1.55}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 64px}
+
+.bar{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;border-bottom:4px solid var(--coral)}
+.bar-in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:17px}
+.brand span{color:var(--coral)}
+.stats{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.13);border-radius:999px;padding:4px 13px;font-size:15px;font-weight:600;white-space:nowrap}
+.stat b{color:var(--sand)}
+.pbar{height:6px;background:rgba(255,255,255,.15)}
+.pbar>i{display:block;height:100%;width:0;background:var(--coral);transition:width .35s ease}
+
+h1{font-family:Georgia,"Times New Roman",serif;font-size:2.1rem;line-height:1.2;margin:.6em 0 .2em}
+h2{font-family:Georgia,serif;font-size:1.45rem;margin:1.4em 0 .5em}
+h3{font-size:1.1rem;margin:1.2em 0 .4em}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0}
+.btn{font:inherit;font-weight:700;cursor:pointer;border:none;border-radius:10px;padding:13px 22px;
+  background:var(--deep);color:#fff;transition:background .2s,transform .08s}
+.btn:hover{background:var(--blue)}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.alt{background:#fff;color:var(--deep);border:2px solid var(--deep)}
+.btn.alt:hover{background:#E3ECF6}
+.btn.gold{background:var(--coral);color:#fff}
+.btn.gold:hover{background:#f06a45}
+.btn.sm{padding:8px 15px;font-size:15px;border-radius:8px}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.hide{display:none !important}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.note{background:#E3ECF6;border-left:5px solid var(--blue);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+.ar{font-family:"Segoe UI",Tahoma,Arial,sans-serif;direction:rtl;font-size:1.1em}
+.hero{padding:30px 0 6px}
+.kicker{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:6px}
+.lead{font-size:1.12rem;color:var(--muted);max-width:62ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:20px 0}
+.tile{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px}
+.tile b{display:block;font-size:1.5rem;color:var(--deep)}
+.tile small{color:var(--muted);font-size:14px}
+input[type=text]{font:inherit;padding:12px 14px;border:2px solid var(--line);border-radius:10px;width:100%;background:#fff;color:var(--ink)}
+input[type=text]:focus{border-color:var(--blue)}
+label.fld{display:block;font-weight:600;margin:14px 0 6px}
+
+.qhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.sectag{background:var(--deep);color:#fff;border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700}
+.qcount{color:var(--muted);font-size:15px;font-weight:600}
+.qtext{font-family:Georgia,serif;font-size:1.25rem;line-height:1.5;margin:14px 0 6px}
+.qsub{color:var(--muted);font-size:15px;margin-bottom:12px}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:#fff;cursor:pointer;
+  border:2px solid var(--line);border-radius:11px;padding:14px 16px;margin:9px 0;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--blue);background:#E3ECF6}
+.opt .lt{display:inline-block;width:28px;height:28px;line-height:26px;text-align:center;border-radius:7px;
+  background:#E3ECF6;color:var(--deep);font-weight:700;margin-right:10px;font-size:15px}
+.opt.sel{border-color:var(--blue);background:#E3ECF6}
+.opt.sel .lt{background:var(--blue);color:#fff}
+.opt.right{border-color:var(--sea);background:#E4F2EE}
+.opt.right .lt{background:var(--sea);color:#fff}
+.opt.wrong{border-color:var(--red);background:#FBEAE7}
+.opt.wrong .lt{background:var(--red);color:#fff}
+.opt:disabled{cursor:default}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));gap:8px}
+.lgrid .opt{text-align:center;margin:0;font-weight:700;font-size:1.15rem;padding:14px 6px}
+.lgrid .opt .lt{margin:0}
+.fb{border-radius:11px;padding:14px 16px;margin:14px 0;font-size:1rem}
+.fb.ok{background:#E4F2EE;border-left:5px solid var(--sea)}
+.fb.no{background:#FBEAE7;border-left:5px solid var(--red)}
+.fb b{display:block;margin-bottom:4px;font-size:1.05rem}
+.hintbox{background:var(--sand);border-left:5px solid var(--coral);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0}
+.ctx{background:#E3ECF6;border:1px solid var(--line);border-radius:12px;padding:16px;margin:8px 0 16px}
+.ctx h4{margin:0 0 10px;font-size:1rem;color:var(--deep)}
+table.tbl{width:100%;border-collapse:collapse;font-size:.95rem;background:#fff}
+table.tbl th,table.tbl td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+table.tbl th{background:var(--deep);color:#fff;font-weight:600}
+.form-line{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+.form-line span:first-child{flex:0 0 190px;font-weight:600;color:var(--deep)}
+.gap{display:inline-block;min-width:112px;border-bottom:2px solid var(--blue);padding:1px 6px;font-weight:700;color:var(--deep)}
+.gap.active{background:var(--coral);color:#fff;border-radius:6px;border-bottom-color:var(--coral)}
+.gap.done{color:var(--sea);border-bottom-color:var(--sea)}
+.audio-ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+svg.map{width:100%;height:auto;background:#fff;border-radius:10px;border:1px solid var(--line)}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 4px}
+.tab{font:inherit;font-weight:600;cursor:pointer;border:2px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:8px 18px}
+.tab.on{background:var(--deep);border-color:var(--deep);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.flip{perspective:1000px;height:165px;cursor:pointer}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:14px;
+  display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);overflow:hidden}
+.face.front{background:#fff}
+.face.back{background:var(--deep);color:#fff;transform:rotateY(180deg)}
+.face .w{font-family:Georgia,serif;font-size:1.22rem;font-weight:700}
+.face .p{font-size:13px;color:var(--blue);font-weight:700}
+.face.back .p{color:var(--sand)}
+.face .d{font-size:13.5px;line-height:1.4;margin-top:6px}
+.face .a{font-size:1.15rem;margin-top:6px}
+
+.score-ring{font-family:Georgia,serif;font-size:4rem;font-weight:700;color:var(--deep);line-height:1}
+.breakdown{width:100%;border-collapse:collapse;margin-top:10px}
+.breakdown td{padding:8px 6px;border-bottom:1px solid var(--line);font-size:.98rem}
+.meter{height:10px;background:#E3ECF6;border-radius:99px;overflow:hidden;min-width:110px}
+.meter>i{display:block;height:100%}
+.cert{background:#fff;border:3px double var(--deep);border-radius:8px;padding:36px 28px;text-align:center;margin:20px 0}
+.cert h2{font-family:Georgia,serif;font-size:2rem;margin:.2em 0;color:var(--deep)}
+.cert .nm{font-family:Georgia,serif;font-size:2.1rem;border-bottom:2px solid var(--coral);display:inline-block;padding:0 24px 4px;margin:12px 0}
+.rev{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;background:#fff}
+.rev .tag{font-size:13px;font-weight:700;color:#fff;background:var(--sea);border-radius:6px;padding:2px 8px}
+.rev.bad .tag{background:var(--red)}
+.foot{text-align:center;color:var(--muted);font-size:14px;padding:26px 0 10px;border-top:1px solid var(--line);margin-top:30px}
+
+@media (max-width:620px){
+  body{font-size:17px}
+  h1{font-size:1.65rem}
+  .qtext{font-size:1.12rem}
+  .stat{font-size:13.5px;padding:3px 10px}
+  table.tbl{font-size:.86rem}
+  .form-line span:first-child{flex:0 0 100%}
+  .card{padding:16px}
+}
+@media print{.bar,.tabs,.btn,.noprint{display:none !important} body{background:#fff} .card{border:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="brand">Wordlist 4 <span>·</span> Tourism</div>
+    <div class="stats">
+      <div class="stat">Points <b id="sPts">0</b></div>
+      <div class="stat">Correct <b id="sCor">0</b>/50</div>
+      <div class="stat">Badges <b id="sBad">0</b></div>
+    </div>
+  </div>
+  <div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<div class="wrap">
+
+<section id="vStart">
+  <div class="hero">
+    <div class="kicker">B1+ · IELTS Band 6 · 40 words · 50 questions</div>
+    <h1>Tourism: the vocabulary test</h1>
+    <p class="lead">Eight sections, four of them new: labelling a town map, completing a booking form from a
+    phone call, matching sentence halves, and correcting the mistakes that Arabic-speaking learners make with
+    these particular words.</p>
+  </div>
+
+  <div class="grid">
+    <div class="tile"><b>50</b><small>questions, one at a time</small></div>
+    <div class="tile"><b>8</b><small>IELTS-style sections</small></div>
+    <div class="tile"><b>80%</b><small>for your certificate</small></div>
+  </div>
+
+  <div class="card">
+    <label class="fld" for="nm">Your name (it goes on the certificate)</label>
+    <input type="text" id="nm" placeholder="e.g. Shamma Al Neyadi" autocomplete="name">
+    <div class="row" style="margin-top:16px">
+      <button class="btn" onclick="startQuiz()">Start the quiz</button>
+      <button class="btn alt" onclick="show('vGloss')">Study the 40 words first</button>
+      <button class="btn alt" onclick="document.getElementById('loadFile').click()">Load saved progress</button>
+      <input type="file" id="loadFile" accept=".json" class="hide" onchange="loadJSON(event)">
+    </div>
+  </div>
+
+  <div class="note"><b>Two things to know.</b> A hint costs 3 points, so try first. The listening section uses
+  your device's voice — turn the sound on, or use headphones.</div>
+</section>
+
+<section id="vGloss" class="hide">
+  <h1>The 40 words</h1>
+  <p class="lead">Tap a card to turn it over. Use the table view to print the list or save it as a PDF.</p>
+  <div class="tabs noprint">
+    <button class="tab on" id="tabCards" onclick="glossView('cards')">Flip cards</button>
+    <button class="tab" id="tabTable" onclick="glossView('table')">Printable table</button>
+    <button class="tab" onclick="window.print()">Print / save as PDF</button>
+    <button class="tab" onclick="show('vStart')">← Back</button>
+  </div>
+  <div id="glossCards" class="cards" style="margin-top:18px"></div>
+  <div id="glossTable" class="hide" style="margin-top:18px"></div>
+</section>
+
+<section id="vQuiz" class="hide">
+  <div class="card">
+    <div class="qhead">
+      <span class="sectag" id="qSec"></span>
+      <span class="qcount" id="qCount"></span>
+    </div>
+    <div id="qCtx"></div>
+    <div class="qtext" id="qText"></div>
+    <div class="qsub" id="qSub"></div>
+    <div id="qBody"></div>
+    <div id="qHint"></div>
+    <div id="qFb"></div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn" id="btnCheck" onclick="checkAnswer()">Check answer</button>
+      <button class="btn gold hide" id="btnNext" onclick="nextQ()">Next question</button>
+      <button class="btn alt sm" id="btnHint" onclick="useHint()">Hint (−3 points)</button>
+    </div>
+  </div>
+</section>
+
+<section id="vRes" class="hide">
+  <div class="card" style="text-align:center">
+    <div id="rEmoji" style="font-size:3rem"></div>
+    <div class="score-ring" id="rScore">0%</div>
+    <div style="color:var(--muted);font-weight:600" id="rRaw"></div>
+    <h2 id="rMsg" style="margin-top:.4em"></h2>
+    <p id="rPts" style="color:var(--muted)"></p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">How you did in each section</h3>
+    <table class="breakdown" id="rBreak"></table>
+  </div>
+  <div id="rCert"></div>
+  <div class="card noprint">
+    <h3 style="margin-top:0">What next</h3>
+    <div class="row">
+      <button class="btn" onclick="showReview()">Review every question</button>
+      <button class="btn alt" onclick="saveJSON()">Download my results (.json)</button>
+      <button class="btn alt" onclick="show('vGloss')">Back to the word list</button>
+      <button class="btn alt" onclick="resetAll()">Start again</button>
+    </div>
+  </div>
+  <div id="rReview"></div>
+</section>
+
+<div class="foot">Designed by: Nazila Motahari &nbsp;|&nbsp; Higher Colleges of Technology, Abu Dhabi &nbsp;|&nbsp; B1+ Vocabulary List 4 (Fall) — Tourism</div>
+</div>
+
+<canvas id="confetti" class="hide"></canvas>
+
+<script>
+/* ============================================================
+   WORD DATA — 40 words, HCT B1+ List 4 (Fall) "Tourism"
+   ============================================================ */
+const WORDS=[
+{w:"accompany",p:"verb",ar:"يُرافِق / يُقَدَّم مع",d:"To go somewhere with someone; also, to be served or supplied with something else",ex:"All children must be accompanied by an adult on the flight. / The fish is accompanied by a green salad."},
+{w:"arrival",p:"noun",ar:"وُصول",d:"The act of coming to a place",ex:"There was a car waiting for him on his arrival at the airport."},
+{w:"captain",p:"noun",ar:"قائِد / كابتن",d:"The leader of a team (or of a ship or aircraft)",ex:"It's unusual to have a goalkeeper as the captain of a football team."},
+{w:"central",p:"adjective",ar:"مَركَزيّ / وَسَط",d:"In or near the centre of a place or thing",ex:"Our hotel is in central London, so it is easy to travel around the city."},
+{w:"consist of",p:"phrasal verb",ar:"يَتَكَوَّن مِن",d:"To be made of something",ex:"Breakfast at the hotel consisted of a sandwich and a cup of coffee."},
+{w:"custom",p:"noun",ar:"عادة / تَقليد",d:"A habit or a tradition",ex:"What customs do you have for celebrating the New Year in your country?"},
+{w:"deliver",p:"verb",ar:"يُوصِّل / يُسَلِّم",d:"To take letters or things to a person or place",ex:"They delivered the air tickets to my home before I travelled."},
+{w:"delivery",p:"noun",ar:"تَوصيل / تَسليم",d:"The act of taking letters or things to a person or place",ex:"Is there a charge for delivery?"},
+{w:"departure",p:"noun",ar:"مُغادَرة",d:"The act of leaving a place",ex:"Our departure was delayed because of bad weather."},
+{w:"district",p:"noun",ar:"مِنطَقة / حَيّ",d:"A part of a city or country",ex:"The business district in Dubai is in Downtown Burj."},
+{w:"efficient",p:"adjective",ar:"فَعّال / ذو كَفاءة",d:"Working well and not wasting time or energy",ex:"Flying is a quick and efficient way of travelling around the world."},
+{w:"explore",p:"verb",ar:"يَستَكشِف",d:"To go around a place you have never been, to find out what is there",ex:"Ibn Battuta explored the Muslim world."},
+{w:"handle",p:"verb",ar:"يَتَعامَل مع / يُدير",d:"To deal with something, or be in charge of it",ex:"The guest relations department handles any customer complaints."},
+{w:"hardly",p:"adverb",ar:"بِالكاد",d:"Almost not, or only a very small amount",ex:"The car is so noisy that I can hardly hear you."},
+{w:"hire",p:"verb",ar:"يَستَأجِر",d:"To pay money in order to use something for a short time",ex:"When we are on holiday we always hire a car."},
+{w:"in advance",p:"adverb phrase",ar:"مُقَدَّماً",d:"Before a particular time",ex:"We booked our tickets in advance."},
+{w:"in common",p:"phrase",ar:"مُشتَرَك",d:"Having the same interests, experiences or qualities as someone else",ex:"The only thing we have in common is our love of travelling."},
+{w:"kindly",p:"adverb",ar:"بِلُطف",d:"In a kind way",ex:"She kindly offered to drive me to the airport."},
+{w:"lorry",p:"noun",ar:"شاحِنة",d:"A large road vehicle for carrying things from place to place",ex:"There are a lot of big lorries on the UAE's roads."},
+{w:"peace",p:"noun",ar:"هُدوء / سَلام",d:"A situation in which there is quiet and calm",ex:"On holiday all I want is peace and quiet so I can relax."},
+{w:"peaceful",p:"adjective",ar:"هادِئ",d:"Quiet and calm",ex:"The beach was quiet and peaceful."},
+{w:"port",p:"noun",ar:"مِيناء",d:"A town or area next to water where ships arrive and leave",ex:"We had a good view of all the ships coming into the port."},
+{w:"preparation",p:"noun",ar:"تَحضير / اِستِعداد",d:"The things you do to get ready for something",ex:"We're making preparations for our trip to Europe."},
+{w:"property",p:"noun",ar:"مُمتَلَكات",d:"Things that belong to someone",ex:"You must look after your property while staying at the hotel."},
+{w:"public",p:"adjective / noun",ar:"عامّ / الجُمهور",d:"For everyone to use; also, all the ordinary people in a place",ex:"We travelled by public transport in London. / This beach is not for use by the public."},
+{w:"rail",p:"noun",ar:"سِكَك حَديديّة",d:"Trains as a method of transport",ex:"Europe has an excellent rail system; you can travel almost anywhere by train."},
+{w:"rare",p:"adjective",ar:"نادِر",d:"Very unusual",ex:"It is very rare to have tourists in the town at this time of year."},
+{w:"rather",p:"adverb",ar:"نَوعاً ما / إلى حَدٍّ ما",d:"Slightly; to a small degree",ex:"The train was rather too crowded for a comfortable journey."},
+{w:"reach",p:"verb",ar:"يَصِل إلى",d:"To arrive somewhere",ex:"If we leave Sharjah at 12:00, we'll reach Abu Dhabi by 2:00."},
+{w:"realise",p:"verb",ar:"يُدرِك",d:"To notice or understand something you did not understand before",ex:"I suddenly realised that we were going the wrong way."},
+{w:"resort",p:"noun",ar:"مُنتَجَع",d:"A place where many people go for a holiday",ex:"Bab Al Shams is a desert resort in Dubai."},
+{w:"romantic",p:"adjective",ar:"رومانسيّ",d:"Relating to exciting feelings of love; or about a love story",ex:"We thought Paris was a romantic city. / I watched a romantic comedy."},
+{w:"route",p:"noun",ar:"طَريق / مَسار",d:"The roads you follow to get from one place to another",ex:"There was an accident, so we took a different route."},
+{w:"ruin",p:"noun",ar:"أطلال / خَرائِب",d:"The broken parts left from an old building or town",ex:"Thousands of tourists walk around these ancient ruins every year."},
+{w:"sail",p:"verb",ar:"يُبحِر",d:"To travel in, or control, a boat or ship",ex:"We sailed to New York."},
+{w:"suitable",p:"adjective",ar:"مُناسِب",d:"Acceptable or right for someone or something",ex:"This adventure holiday is not suitable for children."},
+{w:"towards",p:"preposition",ar:"نَحوَ / باتِّجاه",d:"In the direction of someone or something",ex:"We were driving towards RAK when our car broke down."},
+{w:"tunnel",p:"noun",ar:"نَفَق",d:"A long passage under the ground or through a mountain",ex:"The train went into the tunnel."},
+{w:"vehicle",p:"noun",ar:"مَركَبة",d:"Something such as a car or bus that takes people from place to place",ex:"There are many vehicles to choose from: a bus, a car, even a bicycle."},
+{w:"via",p:"preposition",ar:"عَبرَ / بِواسِطة",d:"Going through or stopping at a place on the way; also, using a particular system to send or receive something",ex:"I'm flying to London via Bahrain. / I found out about the accident via the radio."}
+];
+
+/* ============================================================
+   TOWN MAP (section 3)
+   ============================================================ */
+function townMap(){
+ return '<svg class="map" viewBox="0 0 620 400" role="img" aria-label="Map of a tourist town with eight lettered places">'+
+ '<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">'+
+ '<path d="M0,0 L8,4 L0,8 Z" fill="#16294D"/></marker></defs>'+
+ '<rect x="0" y="0" width="620" height="400" fill="#F7F3E9"/>'+
+ /* sea */
+ '<path d="M0,0 H620 V70 Q470,110 300,78 Q140,50 0,92 Z" fill="#CFE6F0"/>'+
+ '<path d="M30,40 q14,-8 28,0 t28,0" stroke="#8FC2D8" fill="none" stroke-width="2.5"/>'+
+ '<path d="M400,32 q14,-8 28,0 t28,0" stroke="#8FC2D8" fill="none" stroke-width="2.5"/>'+
+ '<text x="500" y="26" font-size="15" fill="#4E8AA6" font-family="Georgia,serif" font-style="italic">The sea</text>'+
+ /* ridge */
+ '<path d="M300,400 Q380,300 470,306 Q560,312 620,360 V400 Z" fill="#DCD3C0"/>'+
+ '<path d="M300,400 Q380,300 470,306 Q560,312 620,360" fill="none" stroke="#B9AD93" stroke-width="2"/>'+
+ '<text x="352" y="386" font-size="14" fill="#8C8068" font-family="Georgia,serif" font-style="italic">The ridge</text>'+
+ /* roads */
+ '<path d="M95,105 Q180,150 300,175 Q420,200 520,110" stroke="#fff" stroke-width="11" fill="none"/>'+
+ '<path d="M300,175 L300,300 Q340,330 495,330" stroke="#fff" stroke-width="11" fill="none"/>'+
+ '<path d="M300,175 L140,215" stroke="#fff" stroke-width="9" fill="none"/>'+
+ '<path d="M300,300 L120,318" stroke="#fff" stroke-width="7" fill="none"/>'+
+ /* compass */
+ '<g transform="translate(40,330)"><circle r="26" fill="#fff" stroke="#C9D6E4" stroke-width="2"/>'+
+ '<line x1="0" y1="16" x2="0" y2="-14" stroke="#16294D" stroke-width="2.5" marker-end="url(#ar)"/>'+
+ '<text x="-5" y="-17" font-size="13" font-weight="700" fill="#16294D">N</text></g>'+
+ /* A port */
+ '<g><rect x="62" y="78" width="66" height="10" fill="#B9AD93"/>'+
+ '<path d="M74,72 l30,0 l-6,-14 l-18,0 Z" fill="#1F3E6E"/><line x1="89" y1="58" x2="89" y2="42" stroke="#16294D" stroke-width="2.5"/>'+
+ '<path d="M89,44 l16,9 l-16,7 Z" fill="#E4572E"/>'+
+ '<path d="M112,75 l22,0 l-5,-10 l-13,0 Z" fill="#3467A8"/>'+
+ '<circle cx="95" cy="112" r="15" fill="#16294D"/><text x="95" y="118" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">A</text></g>'+
+ /* B resort */
+ '<g><rect x="492" y="52" width="58" height="34" rx="3" fill="#fff" stroke="#16294D" stroke-width="2"/>'+
+ '<rect x="500" y="60" width="9" height="9" fill="#CFE6F0"/><rect x="515" y="60" width="9" height="9" fill="#CFE6F0"/>'+
+ '<rect x="530" y="60" width="9" height="9" fill="#CFE6F0"/><rect x="500" y="74" width="9" height="9" fill="#CFE6F0"/>'+
+ '<rect x="515" y="74" width="9" height="9" fill="#CFE6F0"/><rect x="530" y="74" width="9" height="9" fill="#CFE6F0"/>'+
+ '<line x1="568" y1="86" x2="568" y2="60" stroke="#8C7B55" stroke-width="3"/>'+
+ '<path d="M568,58 q-16,-4 -18,8 M568,58 q16,-4 18,8 M568,58 q-4,-14 6,-16" stroke="#1F7A6B" stroke-width="3.5" fill="none"/>'+
+ '<circle cx="520" cy="110" r="15" fill="#16294D"/><text x="520" y="116" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">B</text></g>'+
+ /* C central square */
+ '<g><rect x="268" y="150" width="64" height="48" rx="4" fill="#EFE7D3" stroke="#B9AD93" stroke-width="2"/>'+
+ '<circle cx="300" cy="174" r="9" fill="#CFE6F0" stroke="#3467A8" stroke-width="2"/>'+
+ '<line x1="300" y1="168" x2="300" y2="160" stroke="#3467A8" stroke-width="2"/>'+
+ '<circle cx="300" cy="216" r="15" fill="#16294D"/><text x="300" y="222" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">C</text></g>'+
+ /* D old district */
+ '<g>'+
+ '<path d="M96,196 l14,-11 l14,11 v15 h-28 Z" fill="#fff" stroke="#16294D" stroke-width="1.8"/>'+
+ '<path d="M128,196 l14,-11 l14,11 v15 h-28 Z" fill="#fff" stroke="#16294D" stroke-width="1.8"/>'+
+ '<path d="M112,222 l14,-11 l14,11 v15 h-28 Z" fill="#fff" stroke="#16294D" stroke-width="1.8"/>'+
+ '<path d="M80,222 l14,-11 l14,11 v15 h-28 Z" fill="#fff" stroke="#16294D" stroke-width="1.8"/>'+
+ '<circle cx="168" cy="230" r="15" fill="#16294D"/><text x="168" y="236" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">D</text></g>'+
+ /* E ruins */
+ '<g><rect x="424" y="176" width="9" height="40" fill="#C9BFA6"/><rect x="444" y="186" width="9" height="30" fill="#C9BFA6"/>'+
+ '<rect x="464" y="172" width="9" height="44" fill="#C9BFA6"/><rect x="416" y="216" width="66" height="8" fill="#B9AD93"/>'+
+ '<rect x="418" y="166" width="42" height="7" fill="#B9AD93"/>'+
+ '<circle cx="449" cy="248" r="15" fill="#16294D"/><text x="449" y="254" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">E</text></g>'+
+ /* F rail halt */
+ '<g><line x1="232" y1="296" x2="372" y2="296" stroke="#8C8068" stroke-width="4"/>'+
+ '<line x1="232" y1="306" x2="372" y2="306" stroke="#8C8068" stroke-width="4"/>'+
+ '<line x1="244" y1="292" x2="244" y2="310" stroke="#B9AD93" stroke-width="3"/>'+
+ '<line x1="276" y1="292" x2="276" y2="310" stroke="#B9AD93" stroke-width="3"/>'+
+ '<line x1="324" y1="292" x2="324" y2="310" stroke="#B9AD93" stroke-width="3"/>'+
+ '<line x1="356" y1="292" x2="356" y2="310" stroke="#B9AD93" stroke-width="3"/>'+
+ '<rect x="286" y="266" width="44" height="24" rx="4" fill="#1F3E6E"/>'+
+ '<rect x="294" y="272" width="11" height="10" fill="#CFE6F0"/><rect x="311" y="272" width="11" height="10" fill="#CFE6F0"/>'+
+ '<circle cx="380" cy="272" r="15" fill="#16294D"/><text x="380" y="278" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">F</text></g>'+
+ /* G tunnel */
+ '<g><path d="M474,352 a26,26 0 0 1 52,0 v14 h-52 Z" fill="#6B6252"/>'+
+ '<path d="M474,352 a26,26 0 0 1 52,0" fill="none" stroke="#3E382C" stroke-width="3"/>'+
+ '<circle cx="556" cy="330" r="15" fill="#16294D"/><text x="556" y="336" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">G</text></g>'+
+ /* H market */
+ '<g><path d="M60,300 l50,0 l-6,-12 l-38,0 Z" fill="#E4572E"/><line x1="66" y1="300" x2="66" y2="320" stroke="#8C7B55" stroke-width="3"/>'+
+ '<line x1="104" y1="300" x2="104" y2="320" stroke="#8C7B55" stroke-width="3"/>'+
+ '<rect x="66" y="308" width="38" height="8" fill="#B9AD93"/>'+
+ '<circle cx="128" cy="330" r="15" fill="#16294D"/><text x="128" y="336" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">H</text></g>'+
+ '</svg>';
+}
+const MAPCTX='<div class="ctx"><h4>Map of the town of Qasr al-Mina</h4>'+
+ '<p style="margin:0 0 8px;font-size:14.5px;color:var(--muted)">Look at the pictures, not the letters. One letter is not used in any question.</p>'+townMap()+'</div>';
+
+/* ============================================================
+   LISTENING: BOOKING FORM (section 4)
+   ============================================================ */
+const LISTEN_SCRIPT=
+"Good afternoon, Al Bateen Travel. Let me read your booking back to you. "+
+"You've chosen the full day trip to the ancient ruins at Al Ain. "+
+"You'll travel as far as Al Ain by rail — the train leaves at seven in the morning — "+
+"and then a minibus takes you the last few kilometres. "+
+"Throughout the day your group will be accompanied by a local guide, who speaks both Arabic and English. "+
+"The tour itself consists of a walk around the site in the morning and an afternoon at the resort by the oasis. "+
+"Payment must be made in advance, I'm afraid; we cannot take money on the day. "+
+"One more thing: the walk is quite long, so the trip is not suitable for children under six. "+
+"Your tickets will be delivered to your hotel tomorrow evening. Is that everything?";
+
+const FORM=[
+ {label:"Place visited",pre:"the ancient ",post:" at Al Ain",ans:"ruins",acc:["ruins","ruin"]},
+ {label:"Transport",pre:"as far as Al Ain by ",post:", then a minibus",ans:"rail",acc:["rail"]},
+ {label:"The group",pre:"will be ",post:" by a local guide",ans:"accompanied",acc:["accompanied"]},
+ {label:"The tour",pre:"",post:" of a morning walk and an afternoon at the resort",ans:"consists",acc:["consists","consist"]},
+ {label:"Payment",pre:"must be made in ",post:"",ans:"advance",acc:["advance"]},
+ {label:"Age limit",pre:"not ",post:" for children under six",ans:"suitable",acc:["suitable"]},
+ {label:"Tickets",pre:"will be ",post:" to your hotel tomorrow evening",ans:"delivered",acc:["delivered"]}
+];
+function formCtx(active){
+  const rows=FORM.map((f,i)=>{
+    const st=STATE.answers[FORM_START+i];
+    const cls=i===active?"gap active":(st&&st.correct?"gap done":"gap");
+    const txt=i===active?"…":(st&&st.given?st.given:"…");
+    return '<div class="form-line"><span>'+f.label+'</span><span>'+f.pre+
+      '<span class="'+cls+'">'+(i+1)+'. '+txt+'</span>'+f.post+'</span></div>';
+  }).join("");
+  return '<div class="ctx"><h4>Al Bateen Travel — booking confirmation</h4>'+
+   '<p style="margin:0 0 8px;font-size:14.5px;color:var(--muted)">Write <b>ONE WORD</b> in each gap.</p>'+
+   '<div style="background:#fff;border-radius:10px;padding:10px 14px">'+rows+'</div></div>';
+}
+
+/* ============================================================
+   QUESTIONS — 50
+   ============================================================ */
+const SECTIONS=["Meaning in context","Word building","Label the map","Listening: booking form",
+ "Travel phrases","Paraphrase match","Sentence halves","Spot the mistake"];
+
+const Q=[
+/* ---- 0. Meaning in context (8) ---- */
+{s:0,type:"mcq",q:"What <b>customs</b> do you have for celebrating the New Year in your country?",sub:"Here, <b>custom</b> means…",o:["a tax you pay at the airport","a habit or a tradition","a type of festival food","an official government rule"],a:1,h:"Think about things a family or a country has always done.",e:"A <b>custom</b> is a habit or tradition. Careful: at an airport, <i>customs</i> (always plural) is the place where bags are checked — a different word."},
+{s:0,type:"mcq",q:"Flying is a quick and <b>efficient</b> way of travelling around the world.",sub:"<b>Efficient</b> means…",o:["cheap","working well without wasting time or energy","comfortable and quiet","popular with tourists"],a:1,h:"It is about how well something works, not what it costs.",e:"<b>Efficient</b> = works well, wastes nothing. An efficient system can still be expensive — the word says nothing about price."},
+{s:0,type:"mcq",q:"The guest relations department <b>handles</b> any customer complaints at the hotel.",sub:"<b>Handle</b> means…",o:["to carry something heavy","to deal with something or be in charge of it","to complain about something","to repair something that is broken"],a:1,h:"Think about a job, not about your hands.",e:"<b>Handle</b> a problem, a complaint, a customer = deal with it. Useful in IELTS Speaking Part 3: <i>how should companies handle complaints?</i>"},
+{s:0,type:"mcq",q:"The car is so noisy that I can <b>hardly</b> hear you.",sub:"<b>Hardly</b> means…",o:["easily","almost not","very loudly","always"],a:1,h:"It is a negative word, even though it has no <i>not</i>.",e:"<b>Hardly</b> = almost not. Because it is already negative, you never add <i>not</i>: <i>I can hardly hear you</i>, never <i>I can hardly not hear you</i>."},
+{s:0,type:"mcq",q:"When we are on holiday we always <b>hire</b> a car.",sub:"<b>Hire</b> means…",o:["to buy a car","to pay to use something for a short time","to repair a car","to drive a car very fast"],a:1,h:"You give the car back at the end of the week.",e:"<b>Hire</b> (British English) = rent for a short time. Americans say <i>rent a car</i>. Note the other meaning in work English: <i>hire</i> someone = employ them."},
+{s:0,type:"mcq",q:"The train was <b>rather</b> too crowded for a comfortable journey.",sub:"<b>Rather</b> here means…",o:["completely","slightly","never","almost not"],a:1,h:"It makes the adjective a little weaker, not stronger.",e:"<b>Rather</b> = slightly, a bit. British writers use it to soften a criticism: <i>rather expensive, rather slow</i>."},
+{s:0,type:"mcq",q:"You must look after your <b>property</b> while you are staying at the hotel.",sub:"<b>Property</b> means…",o:["your room key","the things that belong to you","your behaviour in public","the hotel building only"],a:1,h:"Look at the plural idea: your bags, your phone, your passport.",e:"<b>Property</b> = the things that belong to you. Signs in hotels and airports say <i>please do not leave your property unattended</i>."},
+{s:0,type:"mcq",q:"Ibn Battuta <b>explored</b> the Muslim world.",sub:"<b>Explore</b> means…",o:["to rule a place","to travel around a place you do not know, to find out what is there","to write a history of a place","to trade with a place"],a:1,h:"Think about a traveller seeing somewhere for the first time.",e:"<b>Explore</b> = travel around somewhere new to discover it. You can also explore an idea: <i>the report explores the effects of tourism</i>."},
+
+/* ---- 1. Word building (7) ---- */
+{s:1,type:"text",q:"There was a car waiting for him on his ________ at the airport.",sub:"Write the noun form of <b>arrive</b>.",a:"arrival",acc:["arrival"],h:"The noun ends in -al.",e:"<b>arrive</b> → <b>arrival</b>. Airport signs use both nouns: <i>Arrivals</i> and <i>Departures</i>."},
+{s:1,type:"text",q:"Our ________ was delayed because of bad weather.",sub:"Write the noun form of <b>depart</b> (= to leave).",a:"departure",acc:["departure"],h:"It is the opposite of <i>arrival</i>.",e:"<b>depart</b> → <b>departure</b>. Watch the spelling: departu<b>re</b>."},
+{s:1,type:"text",q:"Is there a charge for ________?",sub:"Write the noun form of <b>deliver</b>.",a:"delivery",acc:["delivery"],h:"The -er of the verb becomes -ery in the noun.",e:"<b>deliver</b> (verb) → <b>delivery</b> (noun). Plural: <i>deliveries</i>."},
+{s:1,type:"text",q:"We're making ________ for our trip to Europe.",sub:"Write the noun form of <b>prepare</b>. It is plural here.",a:"preparations",acc:["preparations"],h:"The phrase is <i>make ___ for something</i>.",e:"<b>prepare</b> → <b>preparation(s)</b>. The fixed phrase is <i>make preparations for</i>."},
+{s:1,type:"text",q:"The beach was quiet and ________.",sub:"Write the adjective form of <b>peace</b>.",a:"peaceful",acc:["peaceful"],h:"Add the suffix that means <i>full of</i>.",e:"<b>peace</b> (noun) → <b>peaceful</b> (adjective). Same pattern: <i>care → careful, use → useful</i>."},
+{s:1,type:"text",q:"When I'm on holiday, all I want is ________ and quiet.",sub:"Write the noun form of <b>peaceful</b>.",a:"peace",acc:["peace"],h:"It is a fixed pair of nouns: ___ and quiet.",e:"<b>peace and quiet</b> is a fixed phrase — both words are nouns. <i>Peaceful and quiet</i> is wrong here."},
+{s:1,type:"text",q:"All children must be ________ by an adult on the flight.",sub:"Write the correct form of <b>accompany</b>.",a:"accompanied",acc:["accompanied"],h:"This is the passive: <i>be</i> + past participle.",e:"<b>accompany</b> → <b>accompanied</b>. The y becomes i before -ed. The phrase is <i>accompanied <u>by</u></i> somebody."},
+
+/* ---- 2. Label the map (7) ---- */
+{s:2,type:"mcq",map:1,q:"Which letter shows the <b>port</b>?",sub:"",o:["A","B","C","D","E","F","G","H"],a:0,h:"Look for the boats and the jetty at the water's edge.",e:"<b>A</b> — a <b>port</b> is the place beside the water where ships arrive and leave."},
+{s:2,type:"mcq",map:1,q:"Which letter shows the <b>resort</b>?",sub:"",o:["A","B","C","D","E","F","G","H"],a:1,h:"Look for the modern hotel with a palm tree beside the sea.",e:"<b>B</b> — a <b>resort</b> is a place built for holidays, usually a large hotel complex."},
+{s:2,type:"mcq",map:1,q:"Which letter shows the <b>central</b> square?",sub:"",o:["A","B","C","D","E","F","G","H"],a:2,h:"<i>Central</i> means in or near the centre. Look at the middle of the map.",e:"<b>C</b> — the square with the fountain sits in the centre of the town, so it is the <b>central</b> square."},
+{s:2,type:"mcq",map:1,q:"Which letter shows the old <b>district</b>?",sub:"",o:["A","B","C","D","E","F","G","H"],a:3,h:"A district is a part of a town — look for a group of small houses together.",e:"<b>D</b> — a <b>district</b> is one part of a city or country: <i>the business district, the old district</i>."},
+{s:2,type:"mcq",map:1,q:"Which letter shows the <b>ruins</b>?",sub:"",o:["A","B","C","D","E","F","G","H"],a:4,h:"Look for broken stone columns with no roof.",e:"<b>E</b> — <b>ruins</b> are the broken parts left from an old building. The word is almost always plural."},
+{s:2,type:"mcq",map:1,q:"Which letter shows the <b>rail</b> halt?",sub:"",o:["A","B","C","D","E","F","G","H"],a:5,h:"Look for two long lines with wooden bars across them.",e:"<b>F</b> — <b>rail</b> means trains as a form of transport: <i>travel by rail, the rail system</i>."},
+{s:2,type:"mcq",map:1,q:"Which letter shows the <b>tunnel</b>?",sub:"",o:["A","B","C","D","E","F","G","H"],a:6,h:"Look at the ridge at the bottom of the map — something goes through it.",e:"<b>G</b> — a <b>tunnel</b> is a passage under the ground or through a mountain. H is the fish market, which no question asked about."},
+
+/* ---- 3. Listening: booking form (7) ---- */
+{s:3,type:"text",form:0,q:"Gap 1 — Place visited: “the ancient ________ at Al Ain”.",sub:"Write ONE WORD.",a:"ruins",acc:["ruins"],h:"What is left of a very old building?",e:"<b>ruins</b>. Listen for the -s: the speaker says <i>the ancient ruins at Al Ain</i>."},
+{s:3,type:"text",form:1,q:"Gap 2 — Transport: “as far as Al Ain by ________”.",sub:"Write ONE WORD.",a:"rail",acc:["rail"],h:"The speaker mentions a train.",e:"<b>rail</b>. The speaker says <i>by rail</i> and then explains: <i>the train leaves at seven</i>. Writing <i>train</i> here is a common trap — the form needs the word that follows <i>by</i>."},
+{s:3,type:"text",form:2,q:"Gap 3 — The group: “will be ________ by a local guide”.",sub:"Write ONE WORD.",a:"accompanied",acc:["accompanied"],h:"A verb in the passive, followed by <i>by</i>.",e:"<b>accompanied</b>. <i>Be accompanied by somebody</i> = that person goes with you."},
+{s:3,type:"text",form:3,q:"Gap 4 — The tour: “________ of a morning walk and an afternoon at the resort”.",sub:"Write ONE WORD.",a:"consists",acc:["consists"],h:"A verb meaning <i>is made of</i>, followed by <i>of</i>.",e:"<b>consists</b>. The subject is <i>the tour</i> (singular), so the verb takes -s: <i>the tour consists of…</i>"},
+{s:3,type:"text",form:4,q:"Gap 5 — Payment: “must be made in ________”.",sub:"Write ONE WORD.",a:"advance",acc:["advance"],h:"It means <i>before the day itself</i>.",e:"<b>advance</b>. The phrase is <i>in advance</i> = before a particular time."},
+{s:3,type:"text",form:5,q:"Gap 6 — “Not ________ for children under six”.",sub:"Write ONE WORD.",a:"suitable",acc:["suitable"],h:"An adjective meaning <i>right for</i> somebody.",e:"<b>suitable</b>. The phrase is <i>suitable for</i> somebody: <i>this holiday is not suitable for children</i>."},
+{s:3,type:"text",form:6,q:"Gap 7 — Tickets: “will be ________ to your hotel”.",sub:"Write ONE WORD.",a:"delivered",acc:["delivered"],h:"The past participle of the verb that means <i>to take things to a place</i>.",e:"<b>delivered</b>. The noun is <i>delivery</i>, but the gap comes after <i>be</i>, so you need the verb form."},
+
+/* ---- 4. Travel phrases (6) ---- */
+{s:4,type:"mcq",q:"We booked our tickets ________ and saved thirty per cent.",sub:"",o:["in advance","in common","in front","in order"],a:0,h:"It means before the time you travel.",e:"<b>in advance</b> = before a particular time. Also: <i>pay in advance, book two weeks in advance</i>."},
+{s:4,type:"mcq",q:"The only thing we have ________ is our love of travelling.",sub:"",o:["in advance","in common","in same","in together"],a:1,h:"It is about sharing an interest.",e:"<b>have something in common (with somebody)</b> = share interests or qualities. <i>We have a lot in common.</i>"},
+{s:4,type:"mcq",q:"Breakfast at the hotel ________ a sandwich and a cup of coffee.",sub:"",o:["consisted from","consisted of","consisted in","consisted with"],a:1,h:"There is only one correct preposition after this verb.",e:"<b>consist of</b> — never <i>consist from</i>. Arabic-speaking learners often choose <i>from</i> here, so learn the two words together."},
+{s:4,type:"mcq",q:"I'm flying to London ________ Bahrain.",sub:"",o:["towards","via","across","through of"],a:1,h:"The plane stops there on the way.",e:"<b>via</b> = going through or stopping at a place on the way. It also means <i>using</i>: <i>I heard about it via the radio</i>."},
+{s:4,type:"mcq",q:"We were driving ________ RAK when our car broke down.",sub:"",o:["towards","toward to","in direction of","against"],a:0,h:"One word only — and it ends in -s.",e:"<b>towards</b> = in the direction of. Never add <i>to</i>: <i>towards RAK</i>, not <i>towards to RAK</i>."},
+{s:4,type:"mcq",q:"The meal on today's flight is fish, ________ a fresh green salad.",sub:"",o:["accompanied of","accompanied from","accompanied by","accompanied to"],a:2,h:"The same preposition you use for the passive.",e:"<b>accompanied by</b> — used both for people (<i>children accompanied by an adult</i>) and for food (<i>fish accompanied by salad</i>)."},
+
+/* ---- 5. Paraphrase match (6) ---- */
+{s:5,type:"mcq",q:"We travelled by <b>public</b> transport when we were in London.",sub:"Which sentence means the same?",o:["They used buses and trains that anyone can use.","They travelled in a car they had hired.","They walked everywhere in the city."],a:0,h:"<i>Public</i> means for everyone to use.",e:"<b>Public transport</b> = buses, trains and the metro. As a noun, <i>the public</i> means all the ordinary people: <i>this beach is not for use by the public</i>."},
+{s:5,type:"mcq",q:"There are a lot of big <b>lorries</b> on the UAE's roads.",sub:"Which sentence means the same?",o:["There are many large vehicles carrying goods.","There are many buses carrying tourists.","There are many old cars on the roads."],a:0,h:"A lorry carries things, not people.",e:"A <b>lorry</b> (British English) is a large road vehicle for carrying goods. Americans say <i>truck</i>."},
+{s:5,type:"mcq",q:"We thought that Paris was a very <b>romantic</b> city.",sub:"Which sentence means the same?",o:["The city made them think of love.","The city was very old and historic.","The city was expensive for tourists."],a:0,h:"Look at the root of the word, not at the age of the buildings.",e:"<b>Romantic</b> = connected with feelings of love. A second use is a love story: <i>a romantic comedy</i>."},
+{s:5,type:"mcq",q:"We <b>sailed</b> to New York.",sub:"Which sentence means the same?",o:["They travelled there by ship.","They flew there in the morning.","They booked a hotel there."],a:0,h:"Think about the sea.",e:"<b>Sail</b> = travel in, or control, a boat or ship. It works for ships with engines too, not only for sailing boats."},
+{s:5,type:"mcq",q:"There are many <b>vehicles</b> to choose from, such as a bus, a car, or even a bicycle.",sub:"<b>Vehicle</b> is the general word for…",o:["things that take people from one place to another","roads and railways","places where tourists stay"],a:0,h:"It is a category word, like <i>furniture</i> or <i>equipment</i>.",e:"<b>Vehicle</b> covers cars, buses, lorries and bicycles. In IELTS Writing it is a useful general word: <i>the number of private vehicles rose sharply</i>."},
+{s:5,type:"mcq",q:"If we leave Sharjah at 12:00, we'll <b>reach</b> Abu Dhabi by 2:00.",sub:"Which verb means the same as <b>reach</b> here?",o:["arrive in","leave","pass"],a:0,h:"Careful with the preposition after each verb.",e:"<b>Reach</b> = arrive somewhere. Note the grammar difference: <i>reach Abu Dhabi</i> (no preposition) but <i>arrive <u>in</u> Abu Dhabi</i>."},
+
+/* ---- 6. Sentence halves (6) ---- */
+{s:6,type:"mcq",q:"It is very <b>rare</b> to see tourists here in July, …",sub:"Choose the ending that fits.",o:["so the town is quiet and peaceful.","so the hotels are completely full.","so we hired two lorries."],a:0,h:"<i>Rare</i> means very unusual — so there are few people.",e:"<b>Rare</b> = very unusual. Few tourists → a quiet, <b>peaceful</b> town. The other endings contradict the first half."},
+{s:6,type:"mcq",q:"We booked the hotel <b>in advance</b>, …",sub:"Choose the ending that fits.",o:["because we had not decided the dates.","so we did not have to worry when we arrived.","but the delivery was late."],a:1,h:"Booking early removes a problem later.",e:"Booking <b>in advance</b> means the room is ready on arrival. The ending about not deciding the dates contradicts it — you cannot book a hotel before you know when you are going."},
+{s:6,type:"mcq",q:"The <b>captain</b> announced that …",sub:"Choose the ending that fits.",o:["we would reach the port at six o'clock.","the ruins were rather old.","the tunnel was closed for repairs."],a:0,h:"Who makes announcements on a ship?",e:"A <b>captain</b> leads a team, a ship or an aircraft. On a ship, the captain announces when you will <b>reach</b> the <b>port</b>."},
+{s:6,type:"mcq",q:"The only thing my brother and I have <b>in common</b> …",sub:"Choose the ending that fits.",o:["is our love of exploring new cities.","is a rather noisy vehicle.","is the central district."],a:0,h:"<i>In common</i> is about shared interests.",e:"<i>Have something in common</i> is normally followed by an interest or a quality — here, a love of <b>exploring</b>."},
+{s:6,type:"mcq",q:"There was an accident on the main road, …",sub:"Choose the ending that fits.",o:["so we took a different <b>route</b>.","so we sailed to New York.","so the hotel handled our property."],a:0,h:"What do you change when a road is blocked?",e:"A <b>route</b> is the roads you follow to get somewhere. When one road is blocked, you take a different route."},
+{s:6,type:"mcq",q:"Halfway to the airport I suddenly <b>realised</b> …",sub:"Choose the ending that fits.",o:["that we had left our property in the taxi.","the peaceful beach near the resort.","a rare custom of the old district."],a:0,h:"<i>Realise</i> is normally followed by <i>that</i> + a clause.",e:"<b>Realise</b> = suddenly understand or notice something. It is usually followed by <i>that</i> + a clause, not by a simple noun."},
+
+/* ---- 7. Spot the mistake (3) ---- */
+{s:7,type:"mcq",q:"“Breakfast at the hotel consisted <u>from</u> a sandwich and a cup of coffee.”",sub:"One word is wrong. Choose the correction.",o:["consisted of","consisted with","consisted in","consisted about"],a:0,h:"Learn the verb and its preposition as one item.",e:"<b>consist of</b>. This is the single most common mistake with this phrasal verb — the preposition is always <i>of</i>."},
+{s:7,type:"mcq",q:"“The car is so noisy that I can hardly <u>not</u> hear you.”",sub:"One word is wrong. Choose the correction.",o:["I can hardly hear you.","I cannot hardly hear you.","I can hardly don't hear you.","I can't hardly hear you."],a:0,h:"<i>Hardly</i> is already a negative word.",e:"<b>I can hardly hear you.</b> <i>Hardly</i> means <i>almost not</i>, so adding <i>not</i> or <i>can't</i> gives you a double negative, which is wrong in English."},
+{s:7,type:"mcq",q:"“She <u>kind</u> offered to drive me to the airport.”",sub:"One word is wrong. Choose the correction.",o:["She kindly offered","She kind of offered","She kindness offered","She was kind offered"],a:0,h:"The word describes the verb <i>offered</i>.",e:"<b>kindly</b>. You need the adverb, because the word describes <i>how</i> she offered. <i>Kind</i> is the adjective: <i>she is a kind person</i>."}
+];
+
+const FORM_START=Q.findIndex(x=>x.s===3);
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const STATE={name:"",i:0,pts:0,correct:0,badges:[],answers:[],hinted:[],plays:0,streak:0,done:false};
+const $=id=>document.getElementById(id);
+function show(id){["vStart","vGloss","vQuiz","vRes"].forEach(v=>$(v).classList.add("hide"));$(id).classList.remove("hide");window.scrollTo(0,0);}
+function norm(s){return (s||"").toLowerCase().trim().replace(/[.,!?;:'"()]/g,"").replace(/\s+/g," ");}
+function esc(s){return (s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function updateBar(){$("sPts").textContent=STATE.pts;$("sCor").textContent=STATE.correct;
+  $("sBad").textContent=STATE.badges.length;$("pbar").style.width=(STATE.i/Q.length*100)+"%";}
+
+/* ---------- glossary ---------- */
+function buildGloss(){
+  $("glossCards").innerHTML=WORDS.map(w=>
+    '<div class="flip" onclick="this.classList.toggle(\'on\')" tabindex="0" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();this.classList.toggle(\'on\')}">'+
+    '<div class="flip-in"><div class="face front"><div class="p">'+w.p+'</div><div class="w">'+w.w+'</div>'+
+    '<div class="d" style="color:var(--muted);margin-top:8px">Tap to see the meaning</div></div>'+
+    '<div class="face back"><div class="p">'+w.p+'</div><div class="d">'+w.d+'</div><div class="a ar">'+w.ar+'</div></div>'+
+    '</div></div>').join("");
+  $("glossTable").innerHTML='<table class="tbl"><tr><th style="width:34px">#</th><th>Word</th><th>Part of speech</th><th>Meaning</th><th>Arabic</th><th>Example</th></tr>'+
+    WORDS.map((w,i)=>'<tr><td>'+(i+1)+'</td><td><b>'+w.w+'</b></td><td>'+w.p+'</td><td>'+w.d+'</td><td class="ar">'+w.ar+'</td><td><i>'+w.ex+'</i></td></tr>').join("")+'</table>';
+}
+function glossView(v){
+  $("glossCards").classList.toggle("hide",v!=="cards");
+  $("glossTable").classList.toggle("hide",v!=="table");
+  $("tabCards").classList.toggle("on",v==="cards");
+  $("tabTable").classList.toggle("on",v==="table");
+}
+
+/* ---------- quiz ---------- */
+function startQuiz(){STATE.name=$("nm").value.trim()||"Student";show("vQuiz");renderQ();}
+
+function renderQ(){
+  const q=Q[STATE.i];
+  $("qSec").textContent=SECTIONS[q.s];
+  $("qCount").textContent="Question "+(STATE.i+1)+" of "+Q.length;
+  $("qText").innerHTML=q.q; $("qSub").innerHTML=q.sub||"";
+  $("qFb").innerHTML=""; $("qHint").innerHTML="";
+  $("btnCheck").classList.remove("hide");
+  $("btnNext").classList.add("hide");
+  $("btnHint").classList.remove("hide"); $("btnHint").disabled=false;
+
+  let ctx="";
+  if(q.form!==undefined){
+    ctx='<div class="audio-ctl"><button class="btn sm" onclick="playAudio()">▶ Play the phone call</button>'+
+        '<button class="btn alt sm" onclick="stopAudio()">■ Stop</button>'+
+        '<span style="font-size:14px;color:var(--muted)">Plays used: <b id="plays">'+STATE.plays+'</b></span></div>'+formCtx(q.form);
+  } else if(q.map){ ctx=MAPCTX; }
+  $("qCtx").innerHTML=ctx;
+
+  if(q.type==="mcq"){
+    const letters=q.map?"ABCDEFGH":"ABCDE";
+    const cls=q.map?"lgrid":"";
+    $("qBody").innerHTML='<div class="'+cls+'">'+q.o.map((o,i)=>
+      '<button class="opt" data-i="'+i+'" onclick="pick(this)">'+(q.map?'':'<span class="lt">'+letters[i]+'</span>')+o+'</button>').join("")+'</div>';
+  } else {
+    $("qBody").innerHTML='<input type="text" id="ansIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer">';
+    $("ansIn").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("btnCheck").classList.contains("hide")?nextQ():checkAnswer();}});
+    setTimeout(()=>{const el=$("ansIn");if(el)el.focus();},60);
+  }
+  updateBar();
+}
+
+let picked=null;
+function pick(btn){
+  if(btn.disabled) return;
+  document.querySelectorAll("#qBody .opt").forEach(b=>b.classList.remove("sel"));
+  btn.classList.add("sel"); picked=+btn.dataset.i;
+}
+function toast(m){const d=document.createElement("div");d.textContent=m;
+  d.style.cssText="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:10px;z-index:200;font-size:15px;max-width:90%";
+  document.body.appendChild(d);setTimeout(()=>d.remove(),2600);}
+
+function useHint(){
+  const q=Q[STATE.i];
+  if(STATE.hinted.includes(STATE.i)) return;
+  STATE.hinted.push(STATE.i); STATE.pts=Math.max(0,STATE.pts-3);
+  $("qHint").innerHTML='<div class="hintbox"><b>Hint:</b> '+q.h+'</div>';
+  $("btnHint").disabled=true; updateBar();
+}
+
+function checkAnswer(){
+  const q=Q[STATE.i]; let ok=false,given="";
+  if(q.type==="mcq"){
+    if(picked===null){toast("Choose an answer first.");return;}
+    ok=picked===q.a; given=q.o[picked];
+    document.querySelectorAll("#qBody .opt").forEach(b=>{
+      const i=+b.dataset.i; b.disabled=true; b.classList.remove("sel");
+      if(i===q.a) b.classList.add("right"); else if(i===picked) b.classList.add("wrong");
+    });
+  } else {
+    const v=$("ansIn").value;
+    if(!v.trim()){toast("Type an answer first.");return;}
+    given=v.trim(); ok=q.acc.some(a=>norm(a)===norm(v));
+    $("ansIn").disabled=true;
+    $("ansIn").style.borderColor=ok?"var(--sea)":"var(--red)";
+  }
+  STATE.answers[STATE.i]={given:given,correct:ok};
+  if(ok){
+    STATE.correct++; STATE.streak++;
+    let add=10; if(STATE.streak%5===0){add+=5;toast("🔥 "+STATE.streak+" in a row — bonus 5 points!");}
+    STATE.pts+=add;
+    $("qFb").innerHTML='<div class="fb ok"><b>Correct — +'+add+' points</b>'+q.e+'</div>';
+  } else {
+    STATE.streak=0;
+    const right=q.type==="text"?q.a:(q.map?q.o[q.a]:"ABCDE"[q.a]+" — "+q.o[q.a]);
+    $("qFb").innerHTML='<div class="fb no"><b>Not this time. The answer is: '+right+'</b>'+q.e+'</div>';
+  }
+  if(q.form!==undefined){
+    const h=$("qCtx").querySelector(".ctx");
+    if(h) h.outerHTML=formCtx(-1);
+  }
+  checkBadges();
+  $("btnCheck").classList.add("hide");
+  $("btnNext").classList.remove("hide");
+  $("btnHint").classList.add("hide");
+  picked=null; updateBar(); $("btnNext").focus();
+}
+
+const BADGES=[
+ {id:"first",t:"First Word",c:s=>s.correct>=1},
+ {id:"ten",t:"Ten Up",c:s=>s.correct>=10},
+ {id:"map",t:"Map Reader",c:s=>{let n=0;Q.forEach((q,k)=>{if(q.s===2&&s.answers[k]&&s.answers[k].correct)n++;});return n>=6;}},
+ {id:"half",t:"Halfway There",c:s=>s.i>=25},
+ {id:"ear",t:"Good Ear",c:s=>{let n=0;for(let k=FORM_START;k<FORM_START+7;k++){if(s.answers[k]&&s.answers[k].correct)n++;}return n>=6;}},
+ {id:"streak",t:"On Fire",c:s=>s.streak>=8},
+ {id:"forty",t:"Forty Right",c:s=>s.correct>=40}
+];
+function checkBadges(){
+  BADGES.forEach(b=>{if(!STATE.badges.includes(b.id)&&b.c(STATE)){STATE.badges.push(b.id);toast("🏅 Badge unlocked: "+b.t);}});
+}
+function nextQ(){stopAudio();STATE.i++;if(STATE.i>=Q.length){finish();return;}renderQ();}
+
+function playAudio(){
+  if(!("speechSynthesis" in window)){toast("Your browser cannot play this audio.");return;}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(LISTEN_SCRIPT);
+  u.rate=.88; u.lang="en-GB";
+  window.speechSynthesis.speak(u);
+  STATE.plays++; const p=$("plays"); if(p)p.textContent=STATE.plays;
+}
+function stopAudio(){if("speechSynthesis" in window)window.speechSynthesis.cancel();}
+
+/* ---------- results ---------- */
+function finish(){
+  STATE.done=true;
+  const pct=Math.round(STATE.correct/Q.length*100);
+  $("pbar").style.width="100%";
+  $("rScore").textContent=pct+"%";
+  $("rRaw").textContent=STATE.correct+" out of "+Q.length+" correct";
+  $("rPts").textContent=STATE.pts+" points · "+STATE.badges.length+" badges · "+STATE.hinted.length+" hints used";
+  let emoji,msg;
+  if(pct>=90){emoji="🏆";msg="Outstanding. This vocabulary is ready for the exam.";}
+  else if(pct>=80){emoji="🎉";msg="Strong work — you have earned your certificate.";}
+  else if(pct>=65){emoji="👍";msg="A good result. Review the weak sections below and try again.";}
+  else if(pct>=50){emoji="📚";msg="You know about half of this list. Study the word cards, then come back.";}
+  else{emoji="🔁";msg="Start with the 40 word cards. Learn them, then take the quiz again.";}
+  $("rEmoji").textContent=emoji; $("rMsg").textContent=msg;
+
+  $("rBreak").innerHTML=SECTIONS.map((name,si)=>{
+    let tot=0,got=0;
+    Q.forEach((q,k)=>{if(q.s===si){tot++;if(STATE.answers[k]&&STATE.answers[k].correct)got++;}});
+    const p=Math.round(got/tot*100);
+    return '<tr><td style="width:44%">'+name+'</td><td style="width:15%"><b>'+got+'/'+tot+'</b></td>'+
+      '<td><div class="meter"><i style="width:'+p+'%;background:'+(p>=80?"var(--sea)":p>=50?"var(--coral)":"var(--red)")+'"></i></div></td></tr>';
+  }).join("");
+
+  if(pct>=80){
+    $("rCert").innerHTML='<div class="cert"><div style="font-size:2.8rem">🏅</div>'+
+      '<div style="letter-spacing:2px;color:var(--blue);font-weight:700;font-size:14px">Higher Colleges of Technology · Abu Dhabi</div>'+
+      '<h2>Certificate of Achievement</h2><p style="margin:0;color:var(--muted)">This certifies that</p>'+
+      '<div class="nm">'+esc(STATE.name)+'</div>'+
+      '<p style="max-width:46ch;margin:8px auto">has successfully completed the <b>B1+ Vocabulary List 4 (Fall): Tourism</b> quiz, '+
+      'scoring <b>'+pct+'%</b> ('+STATE.correct+'/'+Q.length+') across all eight sections.</p>'+
+      '<p style="color:var(--muted);font-size:15px">'+new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+'</p>'+
+      '<p style="font-style:italic;margin-top:18px">Designed by: Nazila Motahari</p>'+
+      '<button class="btn gold noprint" onclick="window.print()" style="margin-top:10px">Print / save the certificate</button></div>';
+    confetti();
+  } else {
+    $("rCert").innerHTML='<div class="note"><b>Certificate: not yet.</b> You need 80% (40 out of 50). You are '+
+      (40-STATE.correct)+' question'+((40-STATE.correct)===1?"":"s")+' away. Review your answers, study the cards, and take it again.</div>';
+  }
+  show("vRes");
+}
+
+function showReview(){
+  const html=SECTIONS.map((name,si)=>{
+    const items=Q.map((q,k)=>({q,k})).filter(x=>x.q.s===si).map(({q,k})=>{
+      const a=STATE.answers[k]||{given:"(no answer)",correct:false};
+      const right=q.type==="text"?q.a:q.o[q.a];
+      return '<div class="rev'+(a.correct?"":" bad")+'"><span class="tag">'+(a.correct?"Correct":"Wrong")+'</span> '+
+        '<b>Q'+(k+1)+'.</b> '+q.q+'<br><span style="color:var(--muted);font-size:15px">Your answer: '+esc(a.given)+
+        (a.correct?"":' &nbsp;·&nbsp; Correct answer: <b style="color:var(--sea)">'+right+'</b>')+'</span>'+
+        '<div style="font-size:15px;margin-top:6px">'+q.e+'</div></div>';
+    }).join("");
+    return '<h3>'+name+'</h3>'+items;
+  }).join("");
+  $("rReview").innerHTML='<div class="card"><h2 style="margin-top:0">Every question, with the reason</h2>'+html+'</div>';
+  $("rReview").scrollIntoView({behavior:"smooth"});
+}
+
+/* ---------- save / load ---------- */
+function saveJSON(){
+  const pct=Math.round(STATE.correct/Q.length*100);
+  const data={app:"B1+ Wordlist 4 (Tourism) Vocabulary Quiz",student:STATE.name,date:new Date().toISOString(),
+    score:STATE.correct,outOf:Q.length,percent:pct,points:STATE.pts,badges:STATE.badges,hintsUsed:STATE.hinted.length,
+    sections:SECTIONS.map((n,si)=>{let tot=0,got=0;Q.forEach((q,k)=>{if(q.s===si){tot++;if(STATE.answers[k]&&STATE.answers[k].correct)got++;}});return {section:n,correct:got,outOf:tot};}),
+    answers:Q.map((q,k)=>({n:k+1,section:SECTIONS[q.s],question:q.q.replace(/<[^>]+>/g,""),
+      given:(STATE.answers[k]||{}).given||"",correct:!!(STATE.answers[k]||{}).correct})),
+    state:{i:STATE.i,pts:STATE.pts,correct:STATE.correct,badges:STATE.badges,answers:STATE.answers,hinted:STATE.hinted,done:STATE.done}};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="Wordlist4-Tourism-"+(STATE.name||"student").replace(/\s+/g,"-")+".json";
+  a.click(); URL.revokeObjectURL(a.href);
+  toast("Saved. Send this file to your teacher.");
+}
+function loadJSON(ev){
+  const f=ev.target.files[0]; if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{
+    const d=JSON.parse(r.result); if(!d.state)throw 0;
+    STATE.name=d.student||"Student"; Object.assign(STATE,d.state);
+    $("nm").value=STATE.name;
+    if(STATE.done){finish();}else{show("vQuiz");renderQ();}
+    toast("Progress restored for "+STATE.name+".");
+  }catch(e){toast("That file could not be read. Choose a file saved by this app.");}};
+  r.readAsText(f); ev.target.value="";
+}
+function resetAll(){
+  stopAudio();
+  Object.assign(STATE,{i:0,pts:0,correct:0,badges:[],answers:[],hinted:[],plays:0,streak:0,done:false});
+  $("rReview").innerHTML=""; $("rCert").innerHTML=""; updateBar(); show("vStart");
+}
+
+function confetti(){
+  const c=$("confetti"); c.classList.remove("hide");
+  const x=c.getContext("2d"); c.width=innerWidth; c.height=innerHeight;
+  const cols=["#E4572E","#1F3E6E","#1F7A6B","#F5E6C8","#3467A8"];
+  let bits=Array.from({length:130},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height,
+    w:6+Math.random()*7,h:8+Math.random()*9,c:cols[(Math.random()*cols.length)|0],
+    v:1.6+Math.random()*3,r:Math.random()*6,s:(Math.random()-.5)*.2}));
+  let t=0;
+  (function loop(){t++;x.clearRect(0,0,c.width,c.height);
+    bits.forEach(b=>{b.y+=b.v;b.r+=b.s;x.save();x.translate(b.x,b.y);x.rotate(b.r);x.fillStyle=b.c;x.fillRect(-b.w/2,-b.h/2,b.w,b.h);x.restore();});
+    if(t<300)requestAnimationFrame(loop);else{x.clearRect(0,0,c.width,c.height);c.classList.add("hide");}})();
+}
+
+/* Options are shuffled each time the app loads, so the correct answer is never
+   in a predictable position. Map questions (where the options ARE the map letters)
+   and speaker questions (where A/B/C name the speakers) keep their fixed order. */
+function shuffleOptions(){
+  Q.forEach(q=>{
+    if(q.type!=="mcq"||q.map||q.spk) return;
+    const idx=q.o.map((_,i)=>i);
+    for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=idx[i];idx[i]=idx[j];idx[j]=t;}
+    q.o=idx.map(i=>q.o[i]);
+    q.a=idx.indexOf(q.a);
+  });
+}
+shuffleOptions();
+buildGloss(); updateBar();
+</script>
+</body>
+</html>
